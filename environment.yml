@@ -1,0 +1,13 @@
+name: fx-triangular-arbitrage
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - pandas
+  - numpy
+  - pytest
+  - pip
+  - pip:
+      - -e .
