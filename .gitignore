@@ -1,0 +1,31 @@
+# Raw and generated data
+data/raw/*
+data/processed/*
+
+# Scratch notebooks
+notebooks/scratch/*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments and secrets
+.env
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
