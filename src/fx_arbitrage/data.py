@@ -4,10 +4,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
-
-
 def download_data(pair: str, start_date: datetime, end_date: datetime) -> pd.DataFrame:
     """
     Downloads data from Dukascopy Python for a given pair and date range.
@@ -38,7 +34,12 @@ def download_data(pair: str, start_date: datetime, end_date: datetime) -> pd.Dat
     )
     if data.empty:
         raise ValueError(f"No data returned for {pair} between {start_date} and {end_date}.")
+    
     return data
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 
 def save_raw_data(data: pd.DataFrame, name: str) -> None:
     '''
@@ -49,5 +50,7 @@ def save_raw_data(data: pd.DataFrame, name: str) -> None:
         data (pd.DataFrame): The data to save.
         name (str): The name of the file to save.
     '''
+    start_date = data.index.min()
+    end_date = data.index.max()
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    data.to_parquet(RAW_DATA_DIR / f"{name}.parquet")
+    data.to_parquet(RAW_DATA_DIR / f"{name}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.parquet")

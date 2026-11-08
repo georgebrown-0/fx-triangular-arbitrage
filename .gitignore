@@ -2,8 +2,6 @@
 data/raw/*
 data/processed/*
 
-# Scratch notebooks
-notebooks/scratch/*
 
 # Python
 __pycache__/
